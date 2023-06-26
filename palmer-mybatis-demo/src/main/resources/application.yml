@@ -1,0 +1,8 @@
+
+palmer:
+  web:
+    admin-ui:
+      url: ''
+spring:
+  application:
+    name: mybatis-demo

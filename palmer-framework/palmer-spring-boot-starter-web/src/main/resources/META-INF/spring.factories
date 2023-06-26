@@ -1,0 +1,2 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.palmer.framework.web.config.PalmerWebAutoConfiguration

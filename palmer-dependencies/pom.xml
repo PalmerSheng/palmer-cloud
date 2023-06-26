@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.palmer.cloud</groupId>
+    <artifactId>palmer-dependencies</artifactId>
+    <version>${revision}</version>
+
+    <properties>
+        <revision>1.0-SNAPSHOT</revision>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+        <!-- 统一依赖管理 -->
+        <spring.boot.version>2.7.11</spring.boot.version>
+        <spring.cloud.version>2021.0.5</spring.cloud.version>
+        <spring.cloud.alibaba.version>2021.0.4.0</spring.cloud.alibaba.version>
+        <!-- 工具类相关 -->
+        <lombok.version>1.18.26</lombok.version>
+        <mapstruct.version>1.5.5.Final</mapstruct.version>
+        <hutool.version>5.8.18</hutool.version>
+        <transmittable-thread-local.version>2.14.2</transmittable-thread-local.version>
+        <jsoup.version>1.15.4</jsoup.version>
+        <guava.version>31.1-jre</guava.version>
+        <!-- Web 相关 -->
+        <servlet.versoin>2.5</servlet.versoin>
+        <swagger.version>2.2.8</swagger.version>
+        <springdoc.version>1.6.15</springdoc.version>
+        <knife4j.version>4.1.0</knife4j.version>
+
+    </properties>
+    <dependencyManagement>
+
+
+        <dependencies>
+            <!-- 统一依赖管理 -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring.boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring.cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>${spring.cloud.alibaba.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!-- Web 相关 -->
+            <dependency>
+                <groupId>com.palmer.cloud</groupId>
+                <artifactId>palmer-spring-boot-starter-web</artifactId>
+                <version>${revision}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.swagger.core.v3</groupId> <!-- 接口文档：使用最新版本的 Swagger 模型 -->
+                <artifactId>swagger-annotations</artifactId>
+                <version>${swagger.version}</version>
+            </dependency>
+
+
+            <!--        工具类相关-->
+            <dependency>
+                <groupId>com.palmer.cloud</groupId>
+                <artifactId>palmer-common</artifactId>
+                <version>${revision}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct</artifactId> <!-- use mapstruct-jdk8 for Java 8 or higher -->
+                <version>${mapstruct.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct-jdk8</artifactId>
+                <version>${mapstruct.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct-processor</artifactId>
+                <version>${mapstruct.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-all</artifactId>
+                <version>${hutool.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>transmittable-thread-local</artifactId> <!-- 解决 ThreadLocal 父子线程的传值问题 -->
+                <version>${transmittable-thread-local.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jsoup</groupId>
+                <artifactId>jsoup</artifactId>
+                <version>${jsoup.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${guava.version}</version>
+            </dependency>
+
+
+        </dependencies>
+
+    </dependencyManagement>
+
+</project>
