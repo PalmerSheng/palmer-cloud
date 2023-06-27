@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: palmer-gateway
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 1.116.234.189

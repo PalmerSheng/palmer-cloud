@@ -12,6 +12,7 @@
         <module>palmer-dependencies</module>
         <module>palmer-framework</module>
         <module>palmer-mybatis-demo</module>
+        <module>palmer-gateway</module>
     </modules>
 
     <properties>
