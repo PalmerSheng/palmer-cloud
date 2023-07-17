@@ -1,0 +1,37 @@
+
+palmer:
+  web:
+    admin-ui:
+      url: ''
+
+spring:
+  datasource:
+    # 可以先在这里配置好通用的配置,比如
+    #dynamic开始多数据源配置
+    dynamic:
+      primary: shMes #设置默认的数据源或者数据源组
+      datasource:
+        db1:
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          url: jdbc:mysql://1.116.234.189:3306/dy1?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useSSL=false&zeroDateTimeBehavior=convertToNull&serverTimezone=Asia/Shanghai
+          username: root
+          password: palmer123
+          #数据源2
+        db2:
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          url: jdbc:mysql://1.116.234.189:3306/dy2?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useSSL=false&zeroDateTimeBehavior=convertToNull&serverTimezone=Asia/Shanghai
+          username: root
+          password: palmer123
+        # 数据源3
+        db3:
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          url: jdbc:mysql://1.116.234.189:3306/dy3?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useSSL=false&zeroDateTimeBehavior=convertToNull&serverTimezone=Asia/Shanghai
+          username: root
+          password: palmer123
+      druid:
+        max-active: 6
+
+logging:
+  level:
+    com.palmer.dynamic.datasource: debug
+

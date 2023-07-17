@@ -1,7 +1,11 @@
 spring:
+  application:
+    name: my-dy
   cloud:
     nacos:
       discovery:
         server-addr: 1.116.234.189
-
-
+server:
+  tomcat:
+    threads:
+      max: 4
