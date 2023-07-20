@@ -32,9 +32,9 @@ public class ConfigController {
     private ConfigService configService;
     @GetMapping("/list")
     public List<ConfigDO> list() {
-        List<ConfigDO> list = configService.list();
+        List<ConfigDO> list = configService.lambdaQuery().eq(ConfigDO::getId,1L).list();
 
-        return configService.list();
+        return list;
     }
     @GetMapping("/add")
     public String  add() {

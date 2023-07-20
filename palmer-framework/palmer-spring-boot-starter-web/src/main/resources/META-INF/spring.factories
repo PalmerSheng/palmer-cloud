@@ -1,2 +1,3 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.palmer.framework.web.config.PalmerWebAutoConfiguration
+com.palmer.framework.web.config.PalmerWebAutoConfiguration,\
+com.palmer.framework.swagger.config.PalmerSwaggerAutoConfiguration

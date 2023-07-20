@@ -3,6 +3,7 @@ package com.palmer.dynamic.datasource.biz;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.palmer.dynamic.datasource.config.DataSourceTypeEnum;
 import com.palmer.dynamic.datasource.config.DynamicSourceUtil;
+import com.palmer.dynamic.datasource.config.annotation.ClearDataSource;
 import com.palmer.dynamic.datasource.entity.UserDO;
 import com.palmer.dynamic.datasource.mapp.UserMapper;
 import com.palmer.dynamic.datasource.service.DynamicService;
@@ -29,6 +30,7 @@ public class DynamicController {
     @Resource
     private DynamicService dynamicService ;
 
+    @ClearDataSource
     @GetMapping("test")
     public  Object test() {
         dynamicService.test();

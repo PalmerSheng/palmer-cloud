@@ -3,6 +3,6 @@ palmer:
   web:
     admin-ui:
       url: ''
-spring:
-  application:
-    name: mybatis-demo
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

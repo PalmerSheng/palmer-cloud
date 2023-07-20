@@ -14,6 +14,7 @@
         <module>palmer-gateway</module>
         <module>palmer-dependency-test</module>
         <module>palmer-dynamic-datasource</module>
+        <module>palmer-module-infra</module>
     </modules>
 
     <properties>

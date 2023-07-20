@@ -1,5 +1,6 @@
 package com.palmer.biz.mybatisdemo;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -11,14 +12,13 @@ import javax.annotation.PostConstruct;
  * @date 2023-06-19
  */
 @SpringBootApplication
+@Slf4j
 public class MybatisDemoApplication {
-
-    @Value("${spring.cloud.nacos.discovery.server-addr}")
-    private String value;
-
     @PostConstruct
     public void test() {
-        System.out.println("123:"+value);
+        log.debug("my  debug log  test...");
+        log.info("my  info log  test...");
+        log.error("my  error log  test...");
     }
 
     public static void main(String[] args) {
