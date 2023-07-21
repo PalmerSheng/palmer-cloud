@@ -5,7 +5,7 @@
     <parent>
         <artifactId>palmer-cloud</artifactId>
         <groupId>com.palmer.cloud</groupId>
-        <version>1.0-SNAPSHOT</version>
+        <version>${revision}</version>
     </parent>
     <packaging>pom</packaging>
     <modelVersion>4.0.0</modelVersion>

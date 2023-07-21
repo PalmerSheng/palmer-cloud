@@ -8,7 +8,7 @@
     <packaging>pom</packaging>
     <version>${revision}</version>
     <modules>
-        <module>palmer-dependencies</module>
+       <module>palmer-dependencies</module>
         <module>palmer-framework</module>
         <module>palmer-mybatis-demo</module>
         <module>palmer-gateway</module>
