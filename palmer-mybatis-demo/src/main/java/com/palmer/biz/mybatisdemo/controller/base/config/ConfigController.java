@@ -2,17 +2,21 @@ package com.palmer.biz.mybatisdemo.controller.base.config;
 
 
 import cn.hutool.json.JSONUtil;
+import com.palmer.biz.mybatisdemo.controller.base.config.vo.TransactionDTO;
+import com.palmer.biz.mybatisdemo.controller.base.config.vo.req.TestDateReqDate;
 import com.palmer.biz.mybatisdemo.entity.ConfigDO;
 import com.palmer.biz.mybatisdemo.entity.MyConfig;
 import com.palmer.biz.mybatisdemo.entity.MyConfig2;
 import com.palmer.biz.mybatisdemo.service.ConfigService;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.List;
 
 
@@ -53,6 +57,19 @@ public class ConfigController {
         return "success";
     }
 
+    @GetMapping("/testTransaction")
+    public String  testTransaction() {
+        TransactionDTO transactionDTO = new TransactionDTO();
+        configService.testTransaction(transactionDTO);
+        return "success";
+    }
+
+    @GetMapping("/testDate2")
+    @ApiOperation("测试日期")
+    public String  testDate(TestDateReqDate date) {
+        System.out.println(date);
+        return "success";
+    }
 }
 
 
