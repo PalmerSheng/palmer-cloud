@@ -3,9 +3,8 @@ package com.palmer.framework.web.util;
 
 import cn.hutool.core.util.NumberUtil;
 import com.palmer.framework.common.enums.RpcConstants;
-import com.palmer.framework.common.enums.UserTypeEnum;
 import com.palmer.framework.common.pojo.CommonResult;
-import com.palmer.framework.web.config.WebProperties;
+import org.springframework.boot.autoconfigure.web.WebProperties;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -73,36 +72,9 @@ public class WebFrameworkUtils {
         return (Long) request.getAttribute(REQUEST_ATTRIBUTE_LOGIN_USER_ID);
     }
 
-    /**
-     * 获得当前用户的类型
-     * 注意：该方法仅限于 web 相关的 framework 组件使用！！！
-     *
-     * @param request 请求
-     * @return 用户编号
-     */
-    public static Integer getLoginUserType(HttpServletRequest request) {
-        if (request == null) {
-            return null;
-        }
-        // 1. 优先，从 Attribute 中获取
-        Integer userType = (Integer) request.getAttribute(REQUEST_ATTRIBUTE_LOGIN_USER_TYPE);
-        if (userType != null) {
-            return userType;
-        }
-        // 2. 其次，基于 URL 前缀的约定
-        if (request.getRequestURI().startsWith(properties.getAdminApi().getPrefix())) {
-            return UserTypeEnum.ADMIN.getValue();
-        }
-        if (request.getRequestURI().startsWith(properties.getAppApi().getPrefix())) {
-            return UserTypeEnum.MEMBER.getValue();
-        }
-        return null;
-    }
 
-    public static Integer getLoginUserType() {
-        HttpServletRequest request = getRequest();
-        return getLoginUserType(request);
-    }
+
+
 
     public static Long getLoginUserId() {
         HttpServletRequest request = getRequest();

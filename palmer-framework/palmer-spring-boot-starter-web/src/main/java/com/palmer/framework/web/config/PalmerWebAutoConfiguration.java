@@ -1,19 +1,15 @@
 package com.palmer.framework.web.config;
 
 import com.palmer.framework.common.enums.WebFilterOrderEnum;
-import com.palmer.framework.web.core.clean.XssCleaner;
-import com.palmer.framework.web.filter.XssFilter;
 import com.palmer.framework.web.handler.GlobalExceptionHandler;
 import com.palmer.framework.web.handler.GlobalResponseBodyHandler;
 import com.palmer.framework.web.util.WebFrameworkUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.util.AntPathMatcher;
-import org.springframework.util.PathMatcher;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -29,9 +25,8 @@ import javax.servlet.Filter;
  * @date 2023-06-19
  */
 @AutoConfiguration
-@EnableConfigurationProperties({WebProperties.class,XssProperties.class})
+@EnableConfigurationProperties({WebProperties.class})
 public class PalmerWebAutoConfiguration implements WebMvcConfigurer {
-
     @Resource
     private WebProperties webProperties;
     /**
@@ -46,17 +41,12 @@ public class PalmerWebAutoConfiguration implements WebMvcConfigurer {
         configurePathMatch(configurer, webProperties.getAppApi());
     }
 
-    /**
-     * 设置 API 前缀，仅仅匹配 controller 包下的
-     *
-     * @param configurer 配置
-     * @param api        API 配置
-     */
     private void configurePathMatch(PathMatchConfigurer configurer, WebProperties.Api api) {
         AntPathMatcher antPathMatcher = new AntPathMatcher(".");
         configurer.addPathPrefix(api.getPrefix(), clazz -> clazz.isAnnotationPresent(RestController.class)
                 && antPathMatcher.match(api.getController(), clazz.getPackage().getName())); // 仅仅匹配 controller 包
     }
+
 
     @Bean
     public GlobalExceptionHandler globalExceptionHandler() {
@@ -68,12 +58,6 @@ public class PalmerWebAutoConfiguration implements WebMvcConfigurer {
         return new GlobalResponseBodyHandler();
     }
 
-    @Bean
-    @SuppressWarnings("InstantiationOfUtilityClass")
-    public WebFrameworkUtils webFrameworkUtils(WebProperties webProperties) {
-        // 由于 WebFrameworkUtils 需要使用到 webProperties 属性，所以注册为一个 Bean
-        return new WebFrameworkUtils(webProperties);
-    }
 
     // ========== Filter 相关 ==========
 
@@ -99,10 +83,6 @@ public class PalmerWebAutoConfiguration implements WebMvcConfigurer {
         return bean;
     }
 
-    @Bean
-    @ConditionalOnBean(XssCleaner.class)
-    public FilterRegistrationBean<XssFilter> xssFilter(XssProperties properties, PathMatcher pathMatcher, XssCleaner xssCleaner) {
-        return createFilterBean(new XssFilter(properties, pathMatcher, xssCleaner), WebFilterOrderEnum.XSS_FILTER);
-    }
+
 
 }

@@ -10,11 +10,10 @@
     <modules>
        <module>palmer-dependencies</module>
         <module>palmer-framework</module>
-        <module>palmer-mybatis-demo</module>
         <module>palmer-gateway</module>
-        <module>palmer-dependency-test</module>
         <module>palmer-dynamic-datasource</module>
         <module>palmer-module-infra</module>
+        <module>palmer-module-system</module>
     </modules>
 
     <properties>

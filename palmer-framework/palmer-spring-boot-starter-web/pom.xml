@@ -38,7 +38,10 @@
             <artifactId>spring-security-core</artifactId>
             <scope>provided</scope> <!-- 设置为 provided，主要是 GlobalExceptionHandler 使用 -->
         </dependency>
-        <!--接口文档-->
+
+
+
+
         <dependency>
             <groupId>com.github.xiaoymin</groupId> <!-- 接口文档 -->
             <artifactId>knife4j-openapi3-spring-boot-starter</artifactId>

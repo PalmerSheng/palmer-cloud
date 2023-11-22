@@ -6,10 +6,11 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import javax.validation.constraints.NotEmpty;
 
 /**
- * @author palmer
- * @date 2023-07-20
+ * Swagger 配置属性
+ *
+ * @author 芋道源码
  */
-@ConfigurationProperties("palmer.swagger")
+@ConfigurationProperties("yudao.swagger")
 @Data
 public class SwaggerProperties {
 
@@ -57,4 +58,3 @@ public class SwaggerProperties {
     private String licenseUrl;
 
 }
-

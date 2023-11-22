@@ -13,6 +13,10 @@
         <module>palmer-spring-boot-starter-web</module>
         <module>palmer-spring-boot-starter-banner</module>
         <module>palmer-spring-boot-starter-log</module>
+        <module>palmer-spring-boot-starter-security</module>
+        <module>palmer-spring-boot-starter-mybatis</module>
+        <module>palmer-spring-boot-starter-redis</module>
+        <module>palmer-spring-boot-starter-tenant</module>
     </modules>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>palmer-framework</artifactId>

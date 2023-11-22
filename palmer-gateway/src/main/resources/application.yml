@@ -8,15 +8,16 @@ spring:
       # 路由配置项，对应 RouteDefinition 数组
       routes:
         - id: test1 # 路由的编号
-          uri: lb://mybatis-demo # 路由到的目标地址
+#          uri: lb://mybatis-demo # 路由到的目标地址
+          uri: http://localhost:8123 # 路由到的目标地址
           predicates: # 断言，作为路由的匹配条件，对应 RouteDefinition 数组
             - Path=/mybatisDemo/**
           filters:
             - StripPrefix=1
-        - id: test2 # 路由的编号
-          uri: lb://mybatis-demo # 路由到的目标地址
-          predicates: # 断言，作为路由的匹配条件，对应 RouteDefinition 数组
-            - Path=/k1/**
-          #            - After=2023-06-28T23:45:06.828+08:00[Asia/Shanghai]
-          filters:
-            - StripPrefix=1
+#        - id: test2 # 路由的编号
+#          uri: lb://system-user # 路由到的目标地址
+#          predicates: # 断言，作为路由的匹配条件，对应 RouteDefinition 数组
+#            - Path=/admin-api/system/**
+#          #            - After=2023-06-28T23:45:06.828+08:00[Asia/Shanghai]
+#          filters:
+#            - StripPrefix=1
