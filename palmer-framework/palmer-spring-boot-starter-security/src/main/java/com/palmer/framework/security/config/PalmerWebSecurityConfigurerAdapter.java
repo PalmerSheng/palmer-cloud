@@ -3,6 +3,7 @@ package com.palmer.framework.security.config;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 import com.palmer.framework.security.core.filter.TokenAuthenticationFilter;
+import com.palmer.framework.web.config.WebProperties;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
@@ -10,7 +11,9 @@ import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.mvc.method.RequestMappingInfo;
@@ -18,6 +21,7 @@ import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandl
 
 import javax.annotation.Resource;
 import javax.annotation.security.PermitAll;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -33,6 +37,24 @@ public class PalmerWebSecurityConfigurerAdapter {
     private ApplicationContext applicationContext;
     @Resource
     private TokenAuthenticationFilter authenticationTokenFilter;
+    @Resource
+    private WebProperties webProperties;
+    @Resource
+    private SecurityProperties securityProperties;
+    @Resource
+    private List<AuthorizeRequestsCustomizer> authorizeRequestsCustomizers;
+
+
+    /**
+     * 认证失败处理类 Bean
+     */
+    @Resource
+    private AuthenticationEntryPoint authenticationEntryPoint;
+    /**
+     * 权限不够处理器 Bean
+     */
+    @Resource
+    private AccessDeniedHandler accessDeniedHandler;
 
     @Bean
     protected SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
@@ -44,7 +66,10 @@ public class PalmerWebSecurityConfigurerAdapter {
                 .csrf().disable()
                 // 基于 token 机制，所以不需要 Session
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-                .headers().frameOptions().disable();
+                .headers().frameOptions().disable()
+        .and()
+                .exceptionHandling().authenticationEntryPoint(authenticationEntryPoint)
+                .accessDeniedHandler(accessDeniedHandler);;
                 // 一堆自定义的 Spring Security 处理器
         // 登录、登录暂时不使用 Spring Security 的拓展点，主要考虑一方面拓展多用户、多种登录方式相对复杂，一方面用户的学习成本较高
 
@@ -63,12 +88,25 @@ public class PalmerWebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.DELETE, permitAllUrls.get(HttpMethod.DELETE).toArray(new String[0])).permitAll()
                 // 1.3 基于 yudao.security.permit-all-urls 无需认证
                 // ③：兜底规则，必须认证
+                .antMatchers(securityProperties.getPermitAllUrls().toArray(new String[0])).permitAll()
+                // 1.4 设置 App API 无需认证
+                .antMatchers(buildAppApi("/**")).permitAll()
+                // ②：每个项目的自定义规则
+                .and().authorizeRequests(registry -> // 下面，循环设置自定义规则
+                authorizeRequestsCustomizers.forEach(customizer -> customizer.customize(registry)))
+                // ③：兜底规则，必须认证
+                .authorizeRequests()
                 .anyRequest().authenticated()
         ;
 
         // 添加 Token Filter
         httpSecurity.addFilterBefore(authenticationTokenFilter, UsernamePasswordAuthenticationFilter.class);
         return httpSecurity.build();
+    }
+
+
+    private String buildAppApi(String url) {
+        return webProperties.getAppApi().getPrefix() + url;
     }
 
     private Multimap<HttpMethod, String> getPermitAllUrlsFromAnnotations() {
