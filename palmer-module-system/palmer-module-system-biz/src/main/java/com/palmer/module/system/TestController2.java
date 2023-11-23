@@ -1,4 +1,4 @@
-package com.palmer.module.system.controller.admin.test;
+package com.palmer.module.system;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.RestController;
  * @date 2023-11-22
  */
 @RestController
-@RequestMapping("/system/test")
-public class TestController {
-    @GetMapping("/test1")
+@RequestMapping("testa")
+public class TestController2 {
+    @GetMapping("testa")
     public String test() {
         return "test";
     }
