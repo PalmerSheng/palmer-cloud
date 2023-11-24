@@ -6,6 +6,8 @@ import com.palmer.framework.security.core.handler.AuthenticationEntryPointImpl;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.access.AccessDeniedHandler;
 
@@ -41,6 +43,12 @@ public class YudaoSecurityAutoConfiguration {
     @Bean
     public AccessDeniedHandler accessDeniedHandler() {
         return new AccessDeniedHandlerImpl();
+    }
+
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder(securityProperties.getPasswordEncoderLength());
     }
 
 

@@ -4,7 +4,6 @@ import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.extra.spring.SpringUtil;
-
 import com.google.common.annotations.VisibleForTesting;
 import com.palmer.framework.common.enums.CommonStatusEnum;
 import com.palmer.framework.common.pojo.PageResult;
@@ -26,7 +25,7 @@ import javax.annotation.Resource;
 import java.util.Collection;
 
 import static com.palmer.framework.common.exception.util.ServiceExceptionUtil.exception;
-import static com.palmer.module.system.api.enums.ErrorCodeConstants.*;
+import static com.palmer.module.system.enums.ErrorCodeConstants.*;
 
 /**
  * OAuth2.0 Client Service 实现类

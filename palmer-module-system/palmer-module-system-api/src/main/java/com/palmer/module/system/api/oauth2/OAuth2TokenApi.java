@@ -2,10 +2,10 @@ package com.palmer.module.system.api.oauth2;
 
 
 import com.palmer.framework.common.pojo.CommonResult;
-import com.palmer.module.system.api.enums.ApiConstants;
 import com.palmer.module.system.api.oauth2.dto.OAuth2AccessTokenCheckRespDTO;
 import com.palmer.module.system.api.oauth2.dto.OAuth2AccessTokenCreateReqDTO;
 import com.palmer.module.system.api.oauth2.dto.OAuth2AccessTokenRespDTO;
+import com.palmer.module.system.enums.ApiConstants;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.Parameters;

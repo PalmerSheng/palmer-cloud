@@ -1,4 +1,4 @@
-package com.palmer.module.system.api.enums;
+package com.palmer.module.system.enums;
 
 
 import com.palmer.framework.common.exception.ErrorCode;

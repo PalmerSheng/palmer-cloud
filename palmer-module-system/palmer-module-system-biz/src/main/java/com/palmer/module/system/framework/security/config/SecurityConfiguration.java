@@ -1,7 +1,7 @@
 package com.palmer.module.system.framework.security.config;
 
 import com.palmer.framework.security.config.AuthorizeRequestsCustomizer;
-import com.palmer.module.system.api.enums.ApiConstants;
+import com.palmer.module.system.enums.ApiConstants;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
