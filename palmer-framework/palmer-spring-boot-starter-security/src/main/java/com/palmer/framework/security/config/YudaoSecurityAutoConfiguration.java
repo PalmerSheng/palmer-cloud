@@ -3,6 +3,7 @@ package com.palmer.framework.security.config;
 import com.palmer.framework.security.core.filter.TokenAuthenticationFilter;
 import com.palmer.framework.security.core.handler.AccessDeniedHandlerImpl;
 import com.palmer.framework.security.core.handler.AuthenticationEntryPointImpl;
+import com.palmer.module.system.api.oauth2.OAuth2TokenApi;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -24,8 +25,8 @@ public class YudaoSecurityAutoConfiguration {
     @Resource
     private SecurityProperties securityProperties;
     @Bean
-    public TokenAuthenticationFilter tokenAuthenticationFilter() {
-        return new TokenAuthenticationFilter();
+    public TokenAuthenticationFilter tokenAuthenticationFilter(SecurityProperties securityProperties, OAuth2TokenApi oauth2TokenApi) {
+        return new TokenAuthenticationFilter(securityProperties,oauth2TokenApi);
     }
 
 
