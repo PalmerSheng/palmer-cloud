@@ -2,6 +2,8 @@ server:
   port: 8100
 
 yudao:
+  security:
+    mockEnable: true
   info:
     base-package: com.palmer.module.system
   web:

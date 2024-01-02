@@ -14,6 +14,7 @@
         <module>palmer-dynamic-datasource</module>
         <module>palmer-module-infra</module>
         <module>palmer-module-system</module>
+        <module>palmer-sourcecode</module>
     </modules>
 
     <properties>
