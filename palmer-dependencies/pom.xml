@@ -18,6 +18,7 @@
         <spring.cloud.alibaba.version>2021.0.4.0</spring.cloud.alibaba.version>
         <!-- 工具类相关 -->
         <lombok.version>1.18.26</lombok.version>
+        <velocity.version>2.3</velocity.version>
         <mapstruct.version>1.5.5.Final</mapstruct.version>
         <hutool.version>5.8.18</hutool.version>
         <transmittable-thread-local.version>2.14.2</transmittable-thread-local.version>
@@ -101,6 +102,12 @@
                 <version>${skywalking.version}</version>
             </dependency>
             <!--        工具类相关-->
+
+            <dependency>
+                <groupId>org.apache.velocity</groupId>
+                <artifactId>velocity-engine-core</artifactId>
+                <version>${velocity.version}</version>
+            </dependency>
             <dependency>
                 <groupId>com.palmer.cloud</groupId>
                 <artifactId>palmer-common</artifactId>

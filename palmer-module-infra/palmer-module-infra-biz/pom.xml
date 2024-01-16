@@ -16,6 +16,11 @@
         <maven.compiler.target>8</maven.compiler.target>
     </properties>
     <dependencies>
+
+        <dependency>
+            <groupId>org.apache.velocity</groupId>
+            <artifactId>velocity-engine-core</artifactId> <!-- 实现代码生成 -->
+        </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-bootstrap</artifactId>

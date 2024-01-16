@@ -1,3 +1,7 @@
+GET http://localhost:80/api/item?id=99
+Accept: application/json
+
+###
 ### 请求 /login 接口 => 成功
 POST http://127.0.0.1:8100/admin-api/system/auth/login
 Content-Type: application/json

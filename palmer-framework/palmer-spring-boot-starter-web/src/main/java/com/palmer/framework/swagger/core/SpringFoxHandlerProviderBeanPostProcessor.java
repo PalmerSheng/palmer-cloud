@@ -1,7 +1,7 @@
 package com.palmer.framework.swagger.core;//package cn.iocoder.yudao.framework.swagger.core;
 //
 //import cn.hutool.core.util.ReflectUtil;
-//import cn.iocoder.yudao.framework.common.util.collection.CollectionUtils;
+//
 //import org.springframework.beans.BeansException;
 //import org.springframework.beans.factory.config.BeanPostProcessor;
 //import org.springframework.web.servlet.mvc.method.RequestMappingInfoHandlerMapping;

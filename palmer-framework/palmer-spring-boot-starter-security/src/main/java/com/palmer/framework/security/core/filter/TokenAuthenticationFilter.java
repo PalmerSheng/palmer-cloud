@@ -38,7 +38,7 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
         Integer userType = UserTypeEnum.ADMIN.getValue();
         String token = "";
         if (request.getParameter("authed") != null) {
-            token = "Bearer test1";
+            token = "test1";
         } else {
             token = SecurityFrameworkUtils.obtainAuthorization(request, securityProperties.getTokenHeader());
         }
