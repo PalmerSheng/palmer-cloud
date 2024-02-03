@@ -52,5 +52,10 @@ public class YudaoSecurityAutoConfiguration {
         return new BCryptPasswordEncoder(securityProperties.getPasswordEncoderLength());
     }
 
+//    @Bean("ss") // 使用 Spring Security 的缩写，方便使用
+//    public SecurityFrameworkService securityFrameworkService(PermissionApi permissionApi) {
+//        return new SecurityFrameworkServiceImpl(permissionApi);
+//    }
+
 
 }

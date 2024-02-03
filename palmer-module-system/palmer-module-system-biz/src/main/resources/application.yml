@@ -11,6 +11,8 @@ yudao:
       url: http://abc
 
 spring:
+  main:
+    allow-circular-references: true # 允许循环依赖，因为项目是三层架构，无法避免这个情况。
   redis:
     host: 1.116.234.189
     password: '@Palmer1'
