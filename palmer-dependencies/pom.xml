@@ -17,6 +17,7 @@
         <spring.cloud.version>2021.0.5</spring.cloud.version>
         <spring.cloud.alibaba.version>2021.0.4.0</spring.cloud.alibaba.version>
         <!-- 工具类相关 -->
+        <easyexcel.verion>3.3.3</easyexcel.verion>
         <lombok.version>1.18.26</lombok.version>
         <velocity.version>2.3</velocity.version>
         <mapstruct.version>1.5.5.Final</mapstruct.version>
@@ -39,7 +40,8 @@
         <mybatis-plus-join-boot-starter.version>1.4.6</mybatis-plus-join-boot-starter.version>
 
         <druid.version>1.2.19</druid.version>
-
+        <!-- RPC 相关 -->
+        <dubbo.version>2.7.18</dubbo.version>
 
         <!-- 监控相关 -->
         <skywalking.version>8.12.0</skywalking.version>
@@ -101,8 +103,34 @@
                 <artifactId>apm-toolkit-trace</artifactId>
                 <version>${skywalking.version}</version>
             </dependency>
-            <!--        工具类相关-->
 
+            <!-- RPC 远程调用相关 -->
+            <dependency>
+                <groupId>org.apache.dubbo</groupId>
+                <artifactId>dubbo-common</artifactId> <!-- 兜底，保证在不引入 spring-cloud-starter-dubbo 时，注解等不报错 -->
+                <version>${dubbo.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.dubbo</groupId>
+                <artifactId>dubbo-cluster</artifactId> <!-- 兜底，保证在不引入 spring-cloud-starter-dubbo 时，注解等不报错 -->
+                <version>${dubbo.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.dubbo</groupId>
+                <artifactId>dubbo-rpc-api</artifactId> <!-- 兜底，保证在不引入 spring-cloud-starter-dubbo 时，注解等不报错 -->
+                <version>${dubbo.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.iocoder.cloud</groupId>
+                <artifactId>yudao-spring-boot-starter-rpc</artifactId>
+                <version>${revision}</version>
+            </dependency>
+            <!--        工具类相关-->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>easyexcel</artifactId>
+                <version>${easyexcel.verion}</version>
+            </dependency>
             <dependency>
                 <groupId>org.apache.velocity</groupId>
                 <artifactId>velocity-engine-core</artifactId>

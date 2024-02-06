@@ -3,7 +3,10 @@ package com.palmer.framework.security.config;
 import com.palmer.framework.security.core.filter.TokenAuthenticationFilter;
 import com.palmer.framework.security.core.handler.AccessDeniedHandlerImpl;
 import com.palmer.framework.security.core.handler.AuthenticationEntryPointImpl;
+import com.palmer.framework.security.core.service.SecurityFrameworkService;
+import com.palmer.framework.security.core.service.SecurityFrameworkServiceImpl;
 import com.palmer.module.system.api.oauth2.OAuth2TokenApi;
+import com.palmer.module.system.api.permission.PermissionApi;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -24,9 +27,10 @@ public class YudaoSecurityAutoConfiguration {
 
     @Resource
     private SecurityProperties securityProperties;
+
     @Bean
     public TokenAuthenticationFilter tokenAuthenticationFilter(SecurityProperties securityProperties, OAuth2TokenApi oauth2TokenApi) {
-        return new TokenAuthenticationFilter(securityProperties,oauth2TokenApi);
+        return new TokenAuthenticationFilter(securityProperties, oauth2TokenApi);
     }
 
 
@@ -52,10 +56,10 @@ public class YudaoSecurityAutoConfiguration {
         return new BCryptPasswordEncoder(securityProperties.getPasswordEncoderLength());
     }
 
-//    @Bean("ss") // 使用 Spring Security 的缩写，方便使用
-//    public SecurityFrameworkService securityFrameworkService(PermissionApi permissionApi) {
-//        return new SecurityFrameworkServiceImpl(permissionApi);
-//    }
+    @Bean("ss") // 使用 Spring Security 的缩写，方便使用
+    public SecurityFrameworkService securityFrameworkService(PermissionApi permissionApi) {
+        return new SecurityFrameworkServiceImpl(permissionApi);
+    }
 
 
 }

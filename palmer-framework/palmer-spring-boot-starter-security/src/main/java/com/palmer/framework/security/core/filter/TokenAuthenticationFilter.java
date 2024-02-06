@@ -36,14 +36,9 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws ServletException, IOException {
         LoginUser loginUser = null;
         Integer userType = UserTypeEnum.ADMIN.getValue();
-        String token = "";
-        if (request.getParameter("authed") != null) {
-            token = "test1";
-        } else {
-            token = SecurityFrameworkUtils.obtainAuthorization(request, securityProperties.getTokenHeader());
-        }
+        String token = SecurityFrameworkUtils.obtainAuthorization(request, securityProperties.getTokenHeader());
         if (StrUtil.isNotBlank(token)) {
-             loginUser = buildLoginUserByToken(token, UserTypeEnum.ADMIN.getValue());
+            loginUser = buildLoginUserByToken(token, UserTypeEnum.ADMIN.getValue());
             if (loginUser == null) {
                 loginUser = mockLoginUser(request, token, userType);
             }

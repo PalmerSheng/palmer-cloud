@@ -11,8 +11,10 @@ import org.springframework.stereotype.Service;
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import static com.palmer.framework.common.util.collection.CollectionUtils.convertMap;
 
@@ -29,7 +31,7 @@ public class RoleServiceImpl implements RoleService {
     /**
      * 角色缓存
      * key：角色编号 {@link RoleDO#getId()}
-     *
+     * <p>
      * 这里声明 volatile 修饰的原因是，每次刷新时，直接修改指向
      */
     @Getter
@@ -49,12 +51,12 @@ public class RoleServiceImpl implements RoleService {
     @PostConstruct
     public void initLocalCache() {
         // 注意：忽略自动多租户，因为要全局初始化缓存
-            // 第一步：查询数据
-            List<RoleDO> roleList = roleMapper.selectList();
-            log.info("[initLocalCache][缓存角色，数量为:{}]", roleList.size());
+        // 第一步：查询数据
+        List<RoleDO> roleList = roleMapper.selectList();
+        log.info("[initLocalCache][缓存角色，数量为:{}]", roleList.size());
 
-            // 第二步：构建缓存
-            roleCache = convertMap(roleList, RoleDO::getId);
+        // 第二步：构建缓存
+        roleCache = convertMap(roleList, RoleDO::getId);
     }
 
     @Override
@@ -69,5 +71,15 @@ public class RoleServiceImpl implements RoleService {
             return false;
         }
         return roleList.stream().anyMatch(role -> RoleCodeEnum.isSuperAdmin(role.getCode()));
+    }
+
+
+    @Override
+    public List<RoleDO> getRoleListFromCache(Collection<Long> ids) {
+        if (CollectionUtil.isEmpty(ids)) {
+            return Collections.emptyList();
+        }
+        return roleCache.values().stream().filter(roleDO -> ids.contains(roleDO.getId()))
+                .collect(Collectors.toList());
     }
 }

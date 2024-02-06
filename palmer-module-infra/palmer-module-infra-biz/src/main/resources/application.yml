@@ -1,10 +1,12 @@
 palmer:
   web:
     admin-ui:
-      url: ''
+      url: http://dashboard.yudao.iocoder.cn
   swagger:
     author: Palmer
     title: 测试标题
+  info:
+    base-package: com.palmer.module.infra
 springdoc:
   api-docs:
     enabled: true # 1. 是否开启 Swagger 接文档的元数据

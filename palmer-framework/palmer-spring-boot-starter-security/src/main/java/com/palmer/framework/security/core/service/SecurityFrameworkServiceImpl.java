@@ -43,12 +43,15 @@ public class SecurityFrameworkServiceImpl implements SecurityFrameworkService {
             });
 
 
-
     @Override
     public boolean hasPermission(String permission) {
         return hasAnyPermissions(permission);
     }
 
+    @Override
+    public boolean hasAnyPermissions(String... permissions) {
+        return false;
+    }
 
 
     @Override
