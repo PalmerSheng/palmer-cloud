@@ -6,8 +6,8 @@
     <property name="APPDIR" value="graceLogs"/>
 
     <property name="log4jdbc.logback.properties" value="classpath:log4jdbc.log4j2.properties"/>
-    <!-- 变量 yudao.info.base-package，基础业务包 -->
-    <springProperty scope="context" name="yudao.info.base-package" source="yudao.info.base-package"/>
+    <!-- 变量 palmer.info.base-package，基础业务包 -->
+    <springProperty scope="context" name="palmer.info.base-package" source="palmer.info.base-package"/>
     <!-- 格式化输出：%d 表示日期，%X{tid} SkWalking 链路追踪编号，%thread 表示线程名，%-5level：级别从左显示 5 个字符宽度，%msg：日志消息，%n是换行符 -->
     <property name="PATTERN_DEFAULT"
               value="%d{${LOG_DATEFORMAT_PATTERN:-yyyy-MM-dd HH:mm:ss.SSS}} ${LOG_LEVEL_PATTERN:-%5p} ${PID:- } --- [%thread] [%tid] %-40.40logger{39} : %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}"/>
@@ -23,7 +23,9 @@
             <!-- %msg：日志打印详情 -->
             <!-- %n:换行符 -->
             <!-- %highlight():转换说明符以粗体红色显示其级别为ERROR的事件，红色为WARN，BLUE为INFO，以及其他级别的默认颜色。 -->
-            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %highlight(%-5level) --- [%15.15(%thread)] %cyan(%-40.40(%logger{40})):%msg%n </pattern>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %highlight(%-5level) --- [%15.15(%thread)]
+                %cyan(%-40.40(%logger{40})):%msg%n
+            </pattern>
             <!-- 控制台也要使用UTF-8，不要使用GBK，否则会中文乱码 -->
             <charset>UTF-8</charset>
         </encoder>

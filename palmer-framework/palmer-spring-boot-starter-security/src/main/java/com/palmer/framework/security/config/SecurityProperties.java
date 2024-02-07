@@ -9,7 +9,7 @@ import javax.validation.constraints.NotNull;
 import java.util.Collections;
 import java.util.List;
 
-@ConfigurationProperties(prefix = "yudao.security")
+@ConfigurationProperties(prefix = "palmer.security")
 @Validated
 @Data
 public class SecurityProperties {

@@ -67,10 +67,11 @@ public class PalmerWebSecurityConfigurerAdapter {
                 // 基于 token 机制，所以不需要 Session
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .headers().frameOptions().disable()
-        .and()
+                .and()
                 .exceptionHandling().authenticationEntryPoint(authenticationEntryPoint)
-                .accessDeniedHandler(accessDeniedHandler);;
-                // 一堆自定义的 Spring Security 处理器
+                .accessDeniedHandler(accessDeniedHandler);
+        ;
+        // 一堆自定义的 Spring Security 处理器
         // 登录、登录暂时不使用 Spring Security 的拓展点，主要考虑一方面拓展多用户、多种登录方式相对复杂，一方面用户的学习成本较高
 
         // 获得 @PermitAll 带来的 URL 列表，免登录
@@ -86,7 +87,7 @@ public class PalmerWebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.POST, permitAllUrls.get(HttpMethod.POST).toArray(new String[0])).permitAll()
                 .antMatchers(HttpMethod.PUT, permitAllUrls.get(HttpMethod.PUT).toArray(new String[0])).permitAll()
                 .antMatchers(HttpMethod.DELETE, permitAllUrls.get(HttpMethod.DELETE).toArray(new String[0])).permitAll()
-                // 1.3 基于 yudao.security.permit-all-urls 无需认证
+                // 1.3 基于 palmer.security.permit-all-urls 无需认证
                 // ③：兜底规则，必须认证
                 .antMatchers(securityProperties.getPermitAllUrls().toArray(new String[0])).permitAll()
                 // 1.4 设置 App API 无需认证
@@ -124,7 +125,7 @@ public class PalmerWebSecurityConfigurerAdapter {
             if (entry.getKey().getPathPatternsCondition() == null) {
                 continue;
             }
-            Set<String> urls = entry.getKey().getPathPatternsCondition().getPatterns().stream().map(x->x.getPatternString()).collect(Collectors.toSet());
+            Set<String> urls = entry.getKey().getPathPatternsCondition().getPatterns().stream().map(x -> x.getPatternString()).collect(Collectors.toSet());
 
             // 根据请求方法，添加到 result 结果
             entry.getKey().getMethodsCondition().getMethods().forEach(requestMethod -> {

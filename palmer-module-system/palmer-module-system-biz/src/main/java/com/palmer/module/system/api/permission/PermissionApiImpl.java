@@ -22,10 +22,15 @@ public class PermissionApiImpl implements PermissionApi {
 
     @Resource
     private PermissionService permissionService;
-    
+
 
     @Override
     public CommonResult<Boolean> hasAnyRoles(Long userId, String... roles) {
         return success(permissionService.hasAnyRoles(userId, roles));
+    }
+
+    @Override
+    public CommonResult<Boolean> hasAnyPermissions(Long userId, String... permissions) {
+        return success(permissionService.hasAnyPermissions(userId, permissions));
     }
 }

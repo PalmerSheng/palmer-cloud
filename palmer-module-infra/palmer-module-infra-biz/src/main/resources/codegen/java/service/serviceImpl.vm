@@ -1,0 +1,87 @@
+package ${basePackage}.module.${table.moduleName}.service.${table.businessName};
+
+import org.springframework.stereotype.Service;
+import ${jakartaPackage}.annotation.Resource;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.*;
+import ${basePackage}.module.${table.moduleName}.controller.${sceneEnum.basePackage}.${table.businessName}.vo.*;
+import ${basePackage}.module.${table.moduleName}.dal.dataobject.${table.businessName}.${table.className}DO;
+
+import ${PageResultClassName};
+import ${PageParamClassName};
+import ${BeanUtils};
+
+import ${basePackage}.module.${table.moduleName}.dal.mysql.${table.businessName}.${table.className}Mapper;
+
+
+import static ${ServiceExceptionUtilClassName}.exception;
+import static ${basePackage}.module.${table.moduleName}.enums.ErrorCodeConstants.*;
+
+/**
+ * ${table.classComment} Service 实现类
+ *
+ * @author ${table.author}
+ */
+@Service
+@Validated
+public class ${table.className}ServiceImpl implements ${table.className}Service {
+
+    @Resource
+    private ${table.className}Mapper ${classNameVar}Mapper;
+
+
+    @Override
+
+    public ${primaryColumn.javaType} create${simpleClassName}(${sceneEnum.prefixClass}${table.className}SaveReqVO createReqVO) {
+
+        // 插入
+        ${table.className}DO ${classNameVar} = BeanUtils.toBean(createReqVO, ${table.className}DO.class);
+        ${classNameVar}Mapper.insert(${classNameVar});
+
+        // 返回
+        return ${classNameVar}.getId();
+    }
+
+    @Override
+
+    public void update${simpleClassName}(${sceneEnum.prefixClass}${table.className}SaveReqVO updateReqVO) {
+        // 校验存在
+        validate${simpleClassName}Exists(updateReqVO.getId());
+
+        // 更新
+        ${table.className}DO updateObj = BeanUtils.toBean(updateReqVO, ${table.className}DO.class);
+        ${classNameVar}Mapper.updateById(updateObj);
+
+    }
+
+    @Override
+
+    public void delete${simpleClassName}(${primaryColumn.javaType} id) {
+        // 校验存在
+        validate${simpleClassName}Exists(id);
+
+        // 删除
+        ${classNameVar}Mapper.deleteById(id);
+
+    }
+
+    private void validate${simpleClassName}Exists(${primaryColumn.javaType} id) {
+        if (${classNameVar}Mapper.selectById(id) == null) {
+            throw exception(${simpleClassName_underlineCase.toUpperCase()}_NOT_EXISTS);
+        }
+    }
+
+
+    @Override
+    public ${table.className}DO get${simpleClassName}(${primaryColumn.javaType} id) {
+        return ${classNameVar}Mapper.selectById(id);
+    }
+
+
+    @Override
+    public PageResult<${table.className}DO> get${simpleClassName}Page(${sceneEnum.prefixClass}${table.className}PageReqVO pageReqVO) {
+        return ${classNameVar}Mapper.selectPage(pageReqVO);
+    }
+}

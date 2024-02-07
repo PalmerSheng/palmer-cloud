@@ -21,6 +21,11 @@
         <dependency>
             <groupId>com.palmer.cloud</groupId>
             <version>1.0-SNAPSHOT</version>
+            <artifactId>palmer-spring-boot-starter-operatorlog</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.palmer.cloud</groupId>
+            <version>1.0-SNAPSHOT</version>
             <artifactId>palmer-spring-boot-starter-rpc</artifactId>
         </dependency>
 

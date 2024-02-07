@@ -15,8 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @FeignClient(name = ApiConstants.NAME)
-public interface PermissionApi
-{
+public interface PermissionApi {
     String PREFIX = ApiConstants.PREFIX + "/permission";
 
 
@@ -29,4 +28,12 @@ public interface PermissionApi
     CommonResult<Boolean> hasAnyRoles(@RequestParam("userId") Long userId,
                                       @RequestParam("roles") String... roles);
 
+    @GetMapping(PREFIX + "/has-any-permissions")
+    @Operation(summary = "判断是否有权限，任一一个即可")
+    @Parameters({
+            @Parameter(name = "userId", description = "用户编号", example = "1", required = true),
+            @Parameter(name = "permissions", description = "权限", example = "read,write", required = true)
+    })
+    CommonResult<Boolean> hasAnyPermissions(@RequestParam("userId") Long userId,
+                                            @RequestParam("permissions") String... permissions);
 }

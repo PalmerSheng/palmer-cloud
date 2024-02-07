@@ -1,21 +1,21 @@
 server:
   port: 8100
 
-yudao:
-  security:
-    mockEnable: true
-  info:
-    base-package: com.palmer.module.system
-  web:
-    admin-ui:
-      url: http://abc
+mybatis-plus:
+  global-config:
+    db-config:
+      id-type: AUTO # H2 主键递增
 
 spring:
+  # Jackson 配置项
+  jackson:
+    date-format: yyyy-MM-dd HH:ss
+    time-zone: GMT+8
+
   main:
     allow-circular-references: true # 允许循环依赖，因为项目是三层架构，无法避免这个情况。
   redis:
-    host: 1.116.234.189
-    password: '@Palmer1'
+    host: 192.168.76.132
 
   datasource:
     druid: # Druid 【监控】相关的全局配置
@@ -53,24 +53,24 @@ spring:
       datasource:
         master:
           name: ruoyi-vue-pro
-          url: jdbc:mysql://1.116.234.189:3306/ruoyi-vue-pro?allowMultiQueries=true&useUnicode=true&useSSL=false&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&autoReconnect=true&nullCatalogMeansCurrent=true # MySQL Connector/J 8.X 连接的示例
+          url: jdbc:mysql://192.168.76.132:3306/ruoyi-vue-pro?allowMultiQueries=true&useUnicode=true&useSSL=false&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&autoReconnect=true&nullCatalogMeansCurrent=true # MySQL Connector/J 8.X 连接的示例
           #          url: jdbc:mysql://127.0.0.1:3306/${spring.datasource.dynamic.datasource.master.name}?useSSL=false&allowPublicKeyRetrieval=true&useUnicode=true&characterEncoding=UTF-8&serverTimezone=CTT # MySQL Connector/J 5.X 连接的示例
           #          url: jdbc:postgresql://127.0.0.1:5432/${spring.datasource.dynamic.datasource.master.name} # PostgreSQL 连接的示例
           #          url: jdbc:oracle:thin:@127.0.0.1:1521:xe # Oracle 连接的示例
           #          url: jdbc:sqlserver://127.0.0.1:1433;DatabaseName=${spring.datasource.dynamic.datasource.master.name} # SQLServer 连接的示例
           username: root
-          password: palmer123
+          password: 123
         #          username: sa
         #          password: JSm:g(*%lU4ZAkz06cd52KqT3)i1?H7W
         slave: # 模拟从库，可根据自己需要修改
           name: ruoyi-vue-pro
-          url: jdbc:mysql://1.116.234.189:3306/ruoyi-vue-pro?allowMultiQueries=true&useUnicode=true&useSSL=false&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&autoReconnect=true&nullCatalogMeansCurrent=true # MySQL Connector/J 8.X 连接的示例
+          url: jdbc:mysql://192.168.76.132:3306/ruoyi-vue-pro?allowMultiQueries=true&useUnicode=true&useSSL=false&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&autoReconnect=true&nullCatalogMeansCurrent=true # MySQL Connector/J 8.X 连接的示例
           #          url: jdbc:mysql://127.0.0.1:3306/${spring.datasource.dynamic.datasource.slave.name}?useSSL=false&allowPublicKeyRetrieval=true&useUnicode=true&characterEncoding=UTF-8&serverTimezone=CTT # MySQL Connector/J 5.X 连接的示例
           #          url: jdbc:postgresql://127.0.0.1:5432/${spring.datasource.dynamic.datasource.slave.name} # PostgreSQL 连接的示例
           #          url: jdbc:oracle:thin:@127.0.0.1:1521:xe # Oracle 连接的示例
           #          url: jdbc:sqlserver://127.0.0.1:1433;DatabaseName=${spring.datasource.dynamic.datasource.slave.name} # SQLServer 连接的示例
           username: root
-          password: palmer123
+          password: 123
 
 springdoc:
   api-docs:
@@ -79,3 +79,12 @@ springdoc:
   swagger-ui:
     enabled: true # 2.1 是否开启 Swagger 文档的官方 UI 界面
     path: /swagger-ui.html
+
+palmer:
+  info:
+    base-package: com.palmer.module.system
+  security:
+    mockEnable: true
+  web:
+    admin-ui:
+      url: http://abc
